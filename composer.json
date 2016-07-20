@@ -1,0 +1,16 @@
+{
+    "name": "mikkelson/visualsoft",
+    "description": "PHP SOAP bindings for the Visualsoft V2 API",
+    "homepage": "https://github.com/mikkelson/visualsoft-php-soap-api",
+    "keywords": ["visualsoft", "api", "php", "soap"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Mikkelson",
+            "homepage": "https://about.me/james.mikkelson"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"mikkelson\\Visualsoft\\": "src"}
+    }
+}
