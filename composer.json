@@ -11,6 +11,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {"mikkelson\\": "src"}
+        "psr-4": {"Mikkelson\\": "src"}
     }
 }
