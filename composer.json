@@ -1,5 +1,5 @@
 {
-    "name": "mikkelson/visualsoft",
+    "name": "mikkelson/visualsoft-php-soap-api",
     "description": "PHP SOAP bindings for the Visualsoft V2 API",
     "homepage": "https://github.com/mikkelson/visualsoft-php-soap-api",
     "keywords": ["visualsoft", "api", "php", "soap"],
