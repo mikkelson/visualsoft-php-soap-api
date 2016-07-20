@@ -2,7 +2,7 @@
 
 The purpose of this library is to aid communication with Visualsoft's SOAP API.
 
-This library currently only supports version 2 of the Visualsoft WSDL.
+This library currently supports version 2 of the Visualsoft WSDL.
 
 ## Installation
 
@@ -44,7 +44,7 @@ Before making useful calls to Visualsoft, you must first set the client.
 
 ## Hello World
 
-This call returns the string `Hello World` if successfully, useful to test your API connectivity.
+This call returns the string `Hello World` if successful, useful to test your API connectivity.
 
 ```php
 $vs->helloWorld();
