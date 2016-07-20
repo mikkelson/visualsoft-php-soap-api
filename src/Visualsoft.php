@@ -1,5 +1,5 @@
 <?php
-namespace Mikkelson\VisualSoft;
+namespace Mikkelson;
 
 class VisualsoftException extends \Exception {}
 

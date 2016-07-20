@@ -11,6 +11,6 @@
         }
     ],
     "autoload": {
-        "psr-4": {"mikkelson\\Visualsoft\\": "src"}
+        "psr-4": {"mikkelson\\": "src"}
     }
 }
