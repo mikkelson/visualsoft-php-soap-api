@@ -76,3 +76,13 @@ Returns order data for a specified order using the order reference.
 $order_ref = 'SO1000';
 $vs->getOrderByRef($order_ref);
 ```
+
+## Update Order Status
+
+Updates the status of an order.
+
+```php
+$order_id = 1;
+$status = 'Order Dispatched'
+$vs->updateOrderStatus($order_id, $status);
+```
