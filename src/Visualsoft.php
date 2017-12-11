@@ -15,7 +15,7 @@ class Visualsoft{
     
     protected $SoapClient;
     protected $namespace = '/api/soap/service';
-    protected $wsdl = '/api/soap/wsdl/2';
+    protected $wsdl = '/api/soap/wsdl/3';
     protected $errors;
     
     public function __construct(){}
@@ -101,21 +101,30 @@ class Visualsoft{
     
     public function getOrdersByDate($date){
        
-        $data =  null;
         $param = new \SoapVar($date, XSD_STRING, "date", "http://www.w3.org/2001/XMLSchema");         
         $result = $this->request('GetOrdersByDateRange', $param);
+        return $this->parseOrdersResponse($result);
+    }
 
-        //the point in the below logic is to keep result indexes consistent
-        if(!empty($this->errors) || empty($result->WEB_ORDERS->WEB_ORDER)){
-            //unset empty WEB_ORDERS object to keep returned data structure consistent
-            unset($result->WEB_ORDERS);
-        }elseif(count($result->WEB_ORDERS->WEB_ORDER) > 1){
-            $data = $result->WEB_ORDERS->WEB_ORDER;
+    /*
+     * Downloads all orders that have not yet been marked as downloaded.
+     * 
+     * @see http://demo.visualsoft.co.uk/api/soap#GetNewOrders
+     * @param bool Mark orders as downloaded automatically
+     * @return array
+     */
+
+    public function getNewOrders($auto_update = false){
+
+        if(!$auto_update){
+            $auto_update = 'false';
         }else{
-            $data = array($result->WEB_ORDERS->WEB_ORDER);
+            $auto_update = 'true';
         }
-        
-        return array('data' => $data, 'errors' => $this->errors);
+
+        $param = new \SoapVar('<auto_update xsi:nil="'.$auto_update.'" />', XSD_ANYXML);
+        $result = $this->request('GetNewOrders', $param);
+        return $this->parseOrdersResponse($result);
     }
     
     /*
@@ -174,7 +183,7 @@ class Visualsoft{
         ));    
            
         $headerbody = (object) array(
-            'ClientId' => $this->clientId, 
+            'ClientID' => $this->clientId, 
             'Username' => $this->username, 
             'Password' => $this->password
         );
@@ -216,5 +225,29 @@ class Visualsoft{
         $data['request']  = $this->SoapClient->__getLastRequest();
         $data['response'] = $this->SoapClient->__getLastResponse();
         return $data;
+    }
+
+    /*
+     * Parses VS 'WEB_ORDERS' response
+     * 
+     * @param Object Soap response
+     * @return array
+     */
+    
+    public function parseOrdersResponse($result = null){
+
+        $data =  null;
+
+        //the point in the below logic is to keep result indexes consistent
+        if(!empty($this->errors) || empty($result->WEB_ORDERS->WEB_ORDER)){
+            //unset empty WEB_ORDERS object to keep returned data structure consistent
+            unset($result->WEB_ORDERS);
+        }elseif(count($result->WEB_ORDERS->WEB_ORDER) > 1){
+            $data = $result->WEB_ORDERS->WEB_ORDER;
+        }else{
+            $data = array($result->WEB_ORDERS->WEB_ORDER);
+        }       
+
+        return array('data' => $data, 'errors' => $this->errors);
     }
 }
