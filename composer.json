@@ -1,6 +1,7 @@
 {
     "name": "mikkelson/visualsoft-php-soap-api",
-    "description": "PHP SOAP bindings for the Visualsoft V2 API",
+    "version": "1.2.0",
+    "description": "PHP SOAP bindings for the Visualsoft V3 API",
     "homepage": "https://github.com/mikkelson/visualsoft-php-soap-api",
     "keywords": ["visualsoft", "api", "php", "soap"],
     "license": "MIT",
