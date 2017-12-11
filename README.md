@@ -2,7 +2,7 @@
 
 The purpose of this library is to aid communication with Visualsoft's SOAP API.
 
-This library currently supports version 2 of the Visualsoft WSDL.
+This library currently supports version 3 of the Visualsoft WSDL.
 
 ## Installation
 
@@ -85,4 +85,15 @@ Updates the status of an order.
 $order_id = 1;
 $status = 'Order Dispatched'
 $vs->updateOrderStatus($order_id, $status);
+```
+
+## Get New Orders
+
+Returns all orders that have not yet been marked as downloaded. 
+
+Pass in true/false to have the new orders automatically marked as `Downloaded`. Defaults to false.
+
+```php
+$order_ref = 'SO1000';
+$vs->getNewOrders(true);
 ```
