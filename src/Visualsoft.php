@@ -149,10 +149,10 @@ class Visualsoft{
      * Updates the status of an existing order
      */
     
-    public function updateOrderStatus($order_id, $status){
+    public function updateOrderStatus($order_id, $status, $email = true){
 
         $data = null;
-        $param = new \SoapVar('<order_update_data xsi:type="xsd:string"><![CDATA[<ORDER_STATUSES><ORDER_STATUS><ORDER_ID>'.$order_id.'</ORDER_ID><ORDER_STATUS>'.$status.'</ORDER_STATUS><SEND_CUSTOMER_EMAIL>true</SEND_CUSTOMER_EMAIL></ORDER_STATUS></ORDER_STATUSES>]]></order_update_data><data_type xsi:type="xsd:string">xml</data_type>', XSD_ANYXML);
+        $param = new \SoapVar('<order_update_data xsi:type="xsd:string"><![CDATA[<ORDER_STATUSES><ORDER_STATUS><ORDER_ID>'.$order_id.'</ORDER_ID><ORDER_STATUS>'.$status.'</ORDER_STATUS><SEND_CUSTOMER_EMAIL>'.$email.'</SEND_CUSTOMER_EMAIL></ORDER_STATUS></ORDER_STATUSES>]]></order_update_data><data_type xsi:type="xsd:string">xml</data_type>', XSD_ANYXML);
         $result = $this->request('OrderStatusUpdate', $param);
         
         if(empty($this->errors)){

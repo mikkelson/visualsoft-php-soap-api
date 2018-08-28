@@ -84,7 +84,11 @@ Updates the status of an order.
 ```php
 $order_id = 1;
 $status = 'Order Dispatched'
-$vs->updateOrderStatus($order_id, $status);
+
+//the third parameter is optional. Defaults to true. When true, VisualSoft will email the customer informing of the update to the order.
+$email_customer = false; 
+
+$vs->updateOrderStatus($order_id, $status, $email_customer);
 ```
 
 ## Get New Orders
