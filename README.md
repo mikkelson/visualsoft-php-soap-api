@@ -84,11 +84,13 @@ Updates the status of an order.
 ```php
 $order_id = 1;
 $status = 'Order Dispatched'
+$tracking = 123456; //Order tracking number
+$comments = 'Order dispatched'; // Order comment
 
-//the third parameter is optional. Defaults to true. When true, VisualSoft will email the customer informing of the update to the order.
+//the 5th parameter is optional. Defaults to true. When true, VisualSoft will email the customer informing of the update to the order.
 $email_customer = false; 
 
-$vs->updateOrderStatus($order_id, $status, $email_customer);
+$vs->updateOrderStatus($order_id, $status, $tracking, $comments, $email_customer);
 ```
 
 ## Get New Orders
