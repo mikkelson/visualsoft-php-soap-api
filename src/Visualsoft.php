@@ -14,7 +14,7 @@ class Visualsoft{
      */
     
     protected $SoapClient;
-    protected $namespace = '/api/soap/service';
+    protected $namespace = '/api/soap/service/3';
     protected $wsdl = '/api/soap/wsdl/3';
     protected $errors;
     
@@ -116,13 +116,7 @@ class Visualsoft{
 
     public function getNewOrders($auto_update = false){
 
-        if(!$auto_update){
-            $auto_update = 'false';
-        }else{
-            $auto_update = 'true';
-        }
-
-        $param = new \SoapVar('<auto_update xsi:nil="'.$auto_update.'" />', XSD_ANYXML);
+		$param = new \SoapVar(($auto_update ? 'true' : 'false'), XSD_BOOLEAN);
         $result = $this->request('GetNewOrders', $param);
         return $this->parseOrdersResponse($result);
     }
